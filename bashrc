@@ -9,8 +9,9 @@ if [ -f "$HOME/.local/bin/mise" ]; then
   export VISUAL=nvim
   alias vim="nvim"
   alias jq="jaq"
-  alias claude="claude --dangerously-skip-permissions"
+  alias claude="CLAUDE_CODE_OAUTH_TOKEN=`cat ~/.claude/.token` claude --dangerously-skip-permissions"
   alias cat="bat --style=plain"
+  alias ls="eza --icons --git"
   . <(mise activate bash)
   . <(fzf --bash)
   . <(gh completion -s bash)

@@ -1,4 +1,3 @@
 {
-  "apiKeyHelper": "cat ~/.claude/.token",
   "skipDangerousModePermissionPrompt": true
 }

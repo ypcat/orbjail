@@ -8,7 +8,7 @@ sudo apt install -y git build-essential libncurses-dev libssl-dev inotify-tools 
 curl -fsSL https://mise.run/bash | bash
 export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:$PATH"
 export GITHUB_TOKEN=$(cat ~/github_token)
-mise use -g bat btop claude fd fzf gh jaq jnv neovim rg starship tmux usage uv xh zoxide erlang@28 elixir@1.19
+mise use -g bat btop claude eza fd fzf gh jaq jnv neovim pnpm rg starship tmux usage uv xh zig zoxide erlang@28 elixir@1.19
 . ~/.bashrc
 # elixir tree sitter
 git clone -b v0.3.5 --depth 1 https://github.com/elixir-lang/tree-sitter-elixir
