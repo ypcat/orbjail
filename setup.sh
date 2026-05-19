@@ -21,7 +21,8 @@ rm -rf tree-sitter-elixir
 # nvim
 nvim --headless -c "lua vim.pack.update()" -c "qa"
 # gh
-echo "$GITHUB_TOKEN" | gh auth login --with-token
+unset GITHUB_TOKEN
+gh auth login --with-token < ~/github_token
 gh auth setup-git
 gh auth status
 # claude

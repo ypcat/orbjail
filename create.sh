@@ -7,7 +7,7 @@ orb delete -f ubuntu
 orb create ubuntu:resolute --isolated
 infocmp -x xterm-ghostty | ssh $ORB -- tic -x -
 scp setup.sh $ORB:
-orb mkdir -p ~/.claude ~/.local/share/nvim/site/parser ~/.config/nvim/queries/elixir
+orb mkdir -p .claude .local/share/nvim/site/parser .config/nvim/queries/elixir
 scp bashrc $ORB:~/.bashrc
 scp nvim_init.lua $ORB:~/.config/nvim/init.lua
 scp tmux.conf $ORB:~/.tmux.conf
@@ -15,6 +15,9 @@ scp claude_settings.json $ORB:~/.claude/settings.json
 scp claude.json $ORB:~/.claude.json
 echo "$GITHUB_TOKEN" | orb bash -c 'cat > github_token'
 echo "$CLAUDE_TOKEN" | orb bash -c 'cat > ~/.claude/.token'
-ssh $ORB git config --global user.email "\"$(git config user.email)\""
-ssh $ORB git config --global user.name "\"$(git config user.name)\""
+ssh $ORB 'cat > ~/.gitconfig' <<EOF
+[user]
+	email = $(git config user.email)
+	name = $(git config user.name)
+EOF
 orb ./setup.sh
