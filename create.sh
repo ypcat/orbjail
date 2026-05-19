@@ -1,10 +1,20 @@
 #!/bin/bash
-[ -z $GITHUB_TOKEN ] && echo 'export GITHUB_TOKEN=... missing' && exit 1
-[ -z $CLAUDE_TOKEN ] && echo 'export CLAUDE_TOKEN=... missing' && exit 1
+set -e
+[ -z "$GITHUB_TOKEN" ] && read -p 'enter GITHUB_TOKEN:' GITHUB_TOKEN && export GITHUB_TOKEN
+[ -z "$CLAUDE_TOKEN" ] && read -p 'enter CLAUDE_TOKEN:' CLAUDE_TOKEN && export CLAUDE_TOKEN
+ORB=orb
 orb delete -f ubuntu
 orb create ubuntu:resolute --isolated
-infocmp -x xterm-ghostty | ssh orb -- tic -x -
-scp setup.sh orb:
-orb bash -c 'echo '$GITHUB_TOKEN' > github_token'
-orb bash -c 'echo '$CLAUDE_TOKEN' > claude_token'
+infocmp -x xterm-ghostty | ssh $ORB -- tic -x -
+scp setup.sh $ORB:
+orb mkdir -p ~/.claude ~/.local/share/nvim/site/parser ~/.config/nvim/queries/elixir
+scp bashrc $ORB:~/.bashrc
+scp nvim_init.lua $ORB:~/.config/nvim/init.lua
+scp tmux.conf $ORB:~/.tmux.conf
+scp claude_settings.json $ORB:~/.claude/settings.json
+scp claude.json $ORB:~/.claude.json
+echo "$GITHUB_TOKEN" | orb bash -c 'cat > github_token'
+echo "$CLAUDE_TOKEN" | orb bash -c 'cat > ~/.claude/.token'
+ssh $ORB git config --global user.email "\"$(git config user.email)\""
+ssh $ORB git config --global user.name "\"$(git config user.name)\""
 orb ./setup.sh
