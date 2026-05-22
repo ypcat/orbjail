@@ -7,6 +7,7 @@
 . <(zoxide init bash --cmd cd)
 alias agy="agy --dangerously-skip-permissions"
 alias cat="bat --style=plain"
+alias clone="gh repo clone"
 alias curl="xh"
 alias jq="jaq"
 alias ls="eza --icons --git"
