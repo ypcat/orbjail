@@ -7,11 +7,11 @@
 . <(zoxide init bash --cmd cd)
 alias agy="agy --dangerously-skip-permissions"
 alias cat="bat --style=plain"
-alias claude="CLAUDE_CODE_OAUTH_TOKEN=`cat ~/.claude/.token` claude --dangerously-skip-permissions"
 alias curl="xh"
 alias jq="jaq"
 alias ls="eza --icons --git"
 alias vim="nvim"
+claude() { CLAUDE_CODE_OAUTH_TOKEN=$(cat ~/.claude/.token) command claude --dangerously-skip-permissions "$@"; }
 export EDITOR=nvim
 export ERL_AFLAGS="-kernel shell_history enabled"
 export IEX_HISTORY=enabled
