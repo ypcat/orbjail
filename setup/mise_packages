@@ -1,6 +1,8 @@
-
 bat
 btop
+bun
+elixir@1.19
+erlang@28
 eza
 fd
 fzf
@@ -18,5 +20,3 @@ uv
 xh
 zig
 zoxide
-erlang@28
-elixir@1.19

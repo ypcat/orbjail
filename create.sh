@@ -16,5 +16,10 @@ section '📂 copying setup files'
 scp -rpC setup $ORB:.orbjail
 echo "$GITHUB_TOKEN" | orb bash -c 'cat > .orbjail/github_token'
 echo "$CLAUDE_TOKEN" | orb bash -c 'cat > .orbjail/claude_token'
+ssh $ORB 'cat > ~/.gitconfig' <<EOF
+[user]
+    email = $(git config user.email)
+    name = $(git config user.name)
+EOF
 section '⚙️  running setup'
 orb .orbjail/setup.sh

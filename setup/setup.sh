@@ -5,7 +5,8 @@ reset='\033[0m'
 section() { echo -e "${bold_cyan}# $1${reset}"; }
 section '📦 installing apt packages'
 sudo apt update
-sudo apt install -yqq git build-essential libncurses-dev libssl-dev inotify-tools autoconf m4 man file
+grep '^[^#]' ~/.orbjail/apt_packages | xargs sudo apt install -yqq
+sudo apt update
 section '🔧 installing mise packages'
 curl -fsSL https://mise.run/bash | bash
 export GITHUB_TOKEN=$(cat ~/.orbjail/github_token) KERL_BUILD_DOCS=disable MAKEFLAGS="-j$(nproc)" MISE_ZIG_USE_COMMUNITY_MIRRORS=false
@@ -32,8 +33,6 @@ unset GITHUB_TOKEN
 gh auth login --with-token < ~/.orbjail/github_token
 gh auth setup-git
 gh auth status
-git config --global user.name "claude"
-git config --global user.email "claude@anthropic.com"
 section '🤖 installing claude'
 curl -fsSL https://claude.ai/install.sh | bash
 mkdir -p ~/.claude
@@ -49,5 +48,7 @@ curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/instal
 printf 'y\nn\n' | rtk init -g
 section '🚀 installing antigravity'
 curl -fsSL https://antigravity.google/cli/install.sh | bash
+mkdir -p ~/.gemini
+mv ~/.orbjail/gemini.md ~/.gemini/GEMINI.md
 #rm -rf ~/.orbjail
 section '🔒 orbjail ready'

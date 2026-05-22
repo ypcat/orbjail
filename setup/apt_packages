@@ -1,0 +1,11 @@
+autoconf
+build-essential
+command-not-found
+file
+git
+inotify-tools
+libncurses-dev
+libssl-dev
+m4
+man
+psmisc
