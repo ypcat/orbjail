@@ -14,6 +14,8 @@ grep '^[^#]' ~/.orbjail/mise_packages | xargs ~/.local/bin/mise use -g
 section '🌿 setting up git'
 mv ~/.orbjail/gitconfig ~/.gitconfig
 mv ~/.orbjail/gitattributes ~/.gitattributes
+git config --global user.email "$(cat ~/.orbjail/git_email)"
+git config --global user.name  "$(cat ~/.orbjail/git_name)"
 section '🐚 setting up bash'
 mv ~/.orbjail/bashrc ~/.bashrc
 . ~/.bashrc
