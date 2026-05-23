@@ -1,19 +1,23 @@
+vim.pack.add({
+  "https://github.com/echasnovski/mini.completion",
+  "https://github.com/junegunn/fzf",
+  "https://github.com/junegunn/fzf.vim",
+  "https://github.com/tpope/vim-fugitive",
+})
 vim.cmd("filetype plugin indent on")
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {"elixir", "heex", "eex"},
   callback = function() pcall(vim.treesitter.start) end
 })
-vim.pack.add({"https://github.com/echasnovski/mini.completion"})
 require('mini.completion').setup({
   delay = { completion = 100, info = 100 },
   window = { info = { border = 'single' } }
 })
-vim.pack.add({"https://github.com/junegunn/fzf", "https://github.com/junegunn/fzf.vim"})
 local osc52 = require('vim.ui.clipboard.osc52')
 vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = { ['+'] = osc52.copy('+'), ['*'] = osc52.copy('*'), },
-  paste = { ['+'] = osc52.paste('+'), ['*'] = osc52.paste('*'), },
+  name  = 'OSC 52',
+  copy  = {['+']=osc52.copy('+'), ['*']=osc52.copy('*')},
+  paste = {['+']=osc52.paste('+'), ['*']=osc52.paste('*')},
 }
 vim.api.nvim_create_autocmd('BufReadPost', {pattern='*', command='normal `"'})
 vim.keymap.set({'n', 'i'}, '<s-cr>', '<esc>:w<cr>:term time `readlink -f %`<cr>')
@@ -35,24 +39,10 @@ vim.o.wrap = false
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "elixir", "eelixir", "heex", "surface" },
   callback = function(ev)
-    local current_file = vim.api.nvim_buf_get_name(ev.buf)
-    local mix_match = vim.fs.find({ "mix.exs" }, { upward = true, path = current_file })[1]
-    local root_dir
-    if mix_match then
-      root_dir = vim.fs.dirname(mix_match)
-    elseif current_file ~= "" then
-      root_dir = vim.fs.dirname(current_file)
-    else
-      root_dir = vim.fn.getcwd()
-    end
-    vim.lsp.start({
-      name = "expert",
-      cmd = { "expert", "--stdio" },
-      root_dir = root_dir,
-      settings = {},
-    }, {
-      bufnr = ev.buf,
-    })
+    local f = vim.api.nvim_buf_get_name(ev.buf)
+    local mx = vim.fs.find({"mix.exs"}, {upward=true, path=f})[1]
+    local root = mx and vim.fs.dirname(mx) or (f ~= "" and vim.fs.dirname(f)) or vim.fn.getcwd()
+    vim.lsp.start({name="expert", cmd={"expert", "--stdio"}, root_dir=root, settings={}}, {bufnr=ev.buf})
   end,
 })
 vim.api.nvim_create_autocmd("LspAttach", {

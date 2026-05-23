@@ -9,10 +9,10 @@ alias cat="bat --style=plain"
 alias clone="gh repo clone"
 alias curl="xh"
 alias jq="jaq"
-alias ls="eza --icons --git"
 alias vim="nvim"
 agy() { command agy --dangerously-skip-permissions "$@"; }
 claude() { CLAUDE_CODE_OAUTH_TOKEN=$(cat ~/.claude/.token) command claude --dangerously-skip-permissions "$@"; }
+ls() {local a=(--icons --git); for i; do a+=("$i"); [ "$i" = -lrt ] && a+=(modified); done; command eza "${a[@]}"}
 export EDITOR=nvim
 export ERL_AFLAGS="-kernel shell_history enabled"
 export IEX_HISTORY=enabled
