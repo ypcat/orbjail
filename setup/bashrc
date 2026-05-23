@@ -8,7 +8,6 @@
 alias cat="bat --style=plain"
 alias clone="gh repo clone"
 alias curl="xh"
-alias jq="jaq"
 alias vim="nvim"
 agy() { command agy --dangerously-skip-permissions "$@"; }
 claude() { CLAUDE_CODE_OAUTH_TOKEN=$(cat ~/.claude/.token) command claude --dangerously-skip-permissions "$@"; }
