@@ -11,6 +11,9 @@ section '🔧 installing mise packages'
 curl -fsSL https://mise.run/bash | bash
 export GITHUB_TOKEN=$(cat ~/.orbjail/github_token) KERL_BUILD_DOCS=disable MAKEFLAGS="-j$(nproc)" MISE_ZIG_USE_COMMUNITY_MIRRORS=false
 grep '^[^#]' ~/.orbjail/mise_packages | xargs ~/.local/bin/mise use -g
+section '🌿 setting up git'
+mv ~/.orbjail/gitconfig ~/.gitconfig
+mv ~/.orbjail/gitattributes ~/.gitattributes
 section '🐚 setting up bash'
 mv ~/.orbjail/bashrc ~/.bashrc
 . ~/.bashrc

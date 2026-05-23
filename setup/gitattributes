@@ -1,0 +1,2 @@
+*.ex coding=utf-8 diff=elixir
+*.exs coding=utf-8 diff=elixir

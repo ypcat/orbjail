@@ -1,0 +1,4 @@
+[diff "elixir"]
+    xfuncname = ^[ \\t]*(def(p|macro)?p?[ \\t]+[^ \\t(]+.*)
+[core]
+    attributesfile = /home/peilun/.gitattributes
