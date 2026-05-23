@@ -12,7 +12,7 @@ alias jq="jaq"
 alias vim="nvim"
 agy() { command agy --dangerously-skip-permissions "$@"; }
 claude() { CLAUDE_CODE_OAUTH_TOKEN=$(cat ~/.claude/.token) command claude --dangerously-skip-permissions "$@"; }
-ls() {local a=(--icons --git); for i; do a+=("$i"); [ "$i" = -lrt ] && a+=(modified); done; command eza "${a[@]}"}
+ls() { local a=(--icons --git); for i; do a+=("$i"); [ "$i" = -lrt ] && a+=(modified -s old); done; command eza "${a[@]}"; }
 export EDITOR=nvim
 export ERL_AFLAGS="-kernel shell_history enabled"
 export IEX_HISTORY=enabled
