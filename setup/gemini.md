@@ -61,4 +61,4 @@ For multi-step tasks, state a brief plan:
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
 # git commit
-before commit confirm with user, commit as "antigravity (antigravity@google.com)" instead of user's name/email
+before commit confirm with user, commit as "antigravity (antigravity@users.noreply.github.com)" instead of user's name/email

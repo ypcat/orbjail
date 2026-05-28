@@ -50,7 +50,7 @@ chmod 700 ~/.claude
 chmod 600 ~/.claude/.token
 claude auth status
 curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
-printf 'y\nn\n' | rtk init -g
+rtk init -g --auto-patch
 section '🚀 installing antigravity'
 curl -fsSL https://antigravity.google/cli/install.sh | bash
 mkdir -p ~/.gemini
