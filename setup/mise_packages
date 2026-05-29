@@ -1,3 +1,4 @@
+android-sdk
 bat
 btop
 bun
@@ -8,7 +9,9 @@ eza
 fd
 fzf
 gh
+gradle@8.11.1
 jaq
+java@temurin-17
 jnv
 jq
 neovim
