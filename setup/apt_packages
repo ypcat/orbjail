@@ -9,4 +9,5 @@ libssl-dev
 m4
 man
 psmisc
+rsync
 vifm
